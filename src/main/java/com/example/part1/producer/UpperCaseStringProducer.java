@@ -1,4 +1,4 @@
-package com.example.ReactJediWay.part1.producer;
+package com.example.part1.producer;
 
 import lombok.AllArgsConstructor;
 import org.reactivestreams.Publisher;

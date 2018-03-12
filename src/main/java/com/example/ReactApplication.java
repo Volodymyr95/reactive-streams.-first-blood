@@ -1,12 +1,12 @@
-package com.example.ReactJediWay;
+package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ReactJediWayApplication {
+public class ReactApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReactJediWayApplication.class, args);
+		SpringApplication.run(ReactApplication.class, args);
 	}
 }
