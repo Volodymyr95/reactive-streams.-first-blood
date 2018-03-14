@@ -33,8 +33,11 @@ public class UpperCaseStringProducer<T> implements Publisher<T> {
         private final AtomicBoolean isActive = new AtomicBoolean(true);
 
 
+
         @Override
         public void request(long n) {
+
+            long position = 0;
 
             while (true) {
 
@@ -58,6 +61,7 @@ public class UpperCaseStringProducer<T> implements Publisher<T> {
 
             try {
                 list.stream()
+                        .skip(position)
                         .takeWhile( t -> requestedNumber.get() > 0)
                         .peek(t -> requestedNumber.decrementAndGet())
                         .map(Object::toString)
@@ -68,6 +72,9 @@ public class UpperCaseStringProducer<T> implements Publisher<T> {
             } catch (Throwable throwable) {
                 subscriber.onError(throwable);
             }
+
+            position = n;
+
             subscriber.onComplete();
         }
 
