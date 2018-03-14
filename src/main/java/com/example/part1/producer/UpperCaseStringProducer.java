@@ -58,7 +58,8 @@ public class UpperCaseStringProducer<T> implements Publisher<T> {
 
             try {
                 list.stream()
-                        .limit(requestedNumber.get())
+                        .takeWhile( t -> requestedNumber.get() > 0)
+                        .peek(t -> requestedNumber.decrementAndGet())
                         .map(Object::toString)
                         .map(String::toUpperCase)
                         .forEach(a -> subscriber.onNext((T) a));
