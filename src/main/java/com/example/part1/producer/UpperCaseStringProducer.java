@@ -24,20 +24,26 @@ public class UpperCaseStringProducer<T> implements Publisher<T> {
         return this;
     }
 
-    @AllArgsConstructor
+
+
     class StringSubscription implements Subscription {
 
         private Subscriber subscriber;
 
         private final AtomicLong requestedNumber = new AtomicLong();
         private final AtomicBoolean isActive = new AtomicBoolean(true);
+        private long position = 0;
 
+
+        public StringSubscription(Subscriber subscriber) {
+            this.subscriber = subscriber;
+        }
 
 
         @Override
         public void request(long n) {
 
-            long position = 0;
+
 
             while (true) {
 
