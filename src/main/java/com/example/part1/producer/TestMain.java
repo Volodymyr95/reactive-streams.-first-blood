@@ -17,6 +17,12 @@ public class TestMain {
                             @Override
                             public void onSubscribe(Subscription s) {
                                 s.request(2);
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                s.request(2);
                             }
 
                             @Override
@@ -36,4 +42,6 @@ public class TestMain {
                         }
                 );
     }
+
+
 }
